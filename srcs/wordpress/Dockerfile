@@ -1,25 +1,28 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    entrypoint.sh                                      :+:      :+:    :+:    #
+#    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/03 18:19:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/10 16:47:12 by ctirions         ###   ########.fr        #
+#    Created: 2022/10/10 17:01:42 by ctirions          #+#    #+#              #
+#    Updated: 2022/10/10 17:44:11 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#!/bin/sh
+FROM debian:buster
 
-if [ ! -d /var/lib/mysql/$MARIADB_NAME ]; then
-	service mysql start --datadir=/var/lib/mysql
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y php7.3 php7.3-fpm php7.3-mysql curl
+RUN mkdir -p /run/php
 
-	echo "Create $MARIADB_NAME"
-	eval "echo \"$(cat /tmp/config.sql)\"" | mariadb -u root
+COPY ./utils/entrypoint.sh ./
 
-	service mysql stop --datadir=/var/lib/mysql
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+RUN chmod +x wp-cli.phar
+RUN mv wp-cli.phar /usr/local/bin/wp
 
-fi
+WORKDIR /var/www/wordpress/
 
-mysqld_safe --datadir=/var/lib/mysql
+RUN wp core download --allow-root

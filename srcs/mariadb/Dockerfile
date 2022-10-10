@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:15:36 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/10 14:13:45 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/10 16:52:34 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,14 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install mariadb-server -y
 
+RUN chown -R mysql:mysql /var/lib/mysql
+RUN mkdir -p /var/run/mysqld
+RUN touch /var/run/mysqld/mysqlf.pid
+RUN mkfifo /var/run/mysqld/mysqld.sock
+RUN chown -R mysql:mysql /var/run/mysqld
+
+COPY ./utils/mariadb.cnf /etc/mysql/
 COPY ./utils/entrypoint.sh ./
+COPY ./utils/config.sql ./
 
 ENTRYPOINT [ "bash", "entrypoint.sh" ]
