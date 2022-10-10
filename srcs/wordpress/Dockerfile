@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:01:42 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/10 17:44:11 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/10 18:14:36 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,3 +26,5 @@ RUN mv wp-cli.phar /usr/local/bin/wp
 WORKDIR /var/www/wordpress/
 
 RUN wp core download --allow-root
+
+ENTRYPOINT [ "sh", "entrypoint.sh" ]
