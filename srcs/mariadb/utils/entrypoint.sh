@@ -6,14 +6,14 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:19:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/03 19:33:31 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/10 13:01:26 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/sh
 
 if [ ! -d /var/lib/mysql/$MARIADB_NAME ]; then
-	service mysql start
+	service mysql start --datadir=/var/lib/mysql
 
 	mysql -e "UPDATE mysql.user SET Password = PASSWORD('$MARIADB_PSW') WHERE User = 'root'"
 	mysql -e "DELETE FROM mysql.user WHERE User='';"
@@ -27,5 +27,8 @@ if [ ! -d /var/lib/mysql/$MARIADB_NAME ]; then
 
 	mysql -e "FLUSH PRIVILEGES"
 
-	service mysql stop
+	service mysql stop --datadir=/var/lib/mysql
+
 fi
+
+mysqld_safe --datadir=/var/lib/mysql
