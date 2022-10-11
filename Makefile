@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:51:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/10 18:10:28 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/11 12:46:42 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ down:
 
 clean: down
 		docker-compose -f ./srcs/docker-compose.yml -v --rmi all
-		docker volume rm srsc_mariadb-volume
-		docker volume rm srsc_wordpress-volume
+		docker volume rm srcs_mariadb-volume
+		docker volume rm srcs_wordpress-volume
 
 fclean: clean
 		sudo rm -rf /home/ctirions/data
