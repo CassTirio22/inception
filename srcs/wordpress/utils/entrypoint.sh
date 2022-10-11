@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/10 18:30:31 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/11 12:18:05 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ wp config create \
 	--allow-root \
 	--skip-check
 
-if [ ! wp core is-installed --allow-root ]; then
+if ! wp core is-installed --allow-root; then
 	echo "Install wordpress"
 	wp core install \
 		--url="$WORDPRESS_URL" \
