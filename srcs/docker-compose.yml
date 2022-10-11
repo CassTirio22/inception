@@ -7,6 +7,8 @@ services:
       - .env
     image: mariadb
     restart: unless-stopped
+    networks:
+      - inside
     volumes:
       - mariadb-volume:/var/lib/mysql/
 
@@ -19,5 +21,25 @@ services:
       - .env
     image: wordpress
     restart: unless-stopped
+    networks:
+      - inside
     volumes:
       - wordpress-volume:/var/www/wordpress/
+
+networks:
+  inside:
+
+volumes:
+  mariadb-volume:
+    driver: local
+    driver_opts:
+      device: /home/ctirions/data/database
+      type: volume
+      o: bind
+
+  wordpress-volume:
+    driver: local
+    driver_opts:
+      device: /home/ctirions/data/wordpress
+      type: volume
+      o: bind
