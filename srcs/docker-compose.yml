@@ -12,7 +12,7 @@ services:
     volumes:
       - mariadb-volume:/var/lib/mysql/
     healthcheck:
-      test: ["mysqladmin", "ping", "-u", "$MARIADB_USER_NAME", "-pMARIADB_USER_PSW"]
+      test: ["CMD", "mysqladmin", "ping", "-u", "$MARIADB_USER_NAME", "-pMARIADB_USER_PSW"]
       interval: 10s
       timeout: 5s
       retries: 5
