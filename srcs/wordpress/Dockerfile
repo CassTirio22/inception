@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:01:42 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/11 12:16:07 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/12 11:42:08 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,10 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 RUN chmod +x wp-cli.phar
 RUN mv wp-cli.phar /usr/local/bin/wp
 
-WORKDIR /var/www/wordpress/
+WORKDIR /var/www/wordpress
 
 RUN wp core download --allow-root
+RUN chown -R www-data:www-data /var/www/wordpress
+
 
 ENTRYPOINT [ "sh", "/entrypoint.sh" ]
