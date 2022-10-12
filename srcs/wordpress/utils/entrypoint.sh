@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/11 12:56:43 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/12 11:04:04 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ wp config create \
 	--dbuser=$MARIADB_USER_NAME \
 	--dbpass=$MARIADB_USER_PSW \
 	--dbhost=$MARIADB_NAME \
+	--path="/var/www/wordpress/" \
 	--allow-root \
 	--skip-check
 
