@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/12 11:04:04 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/12 11:13:45 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ wp config create \
 	--path="/var/www/wordpress/" \
 	--allow-root \
 	--skip-check
+echo "Create wp-config.php 2"
 
 if ! wp core is-installed --allow-root; then
 	echo "Install wordpress"
