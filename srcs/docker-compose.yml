@@ -38,7 +38,7 @@ services:
     env_file: .env
     image: nginx
     restart: unless-stopped
-    network:
+    networks:
       - inside
 
 
