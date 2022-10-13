@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:01:42 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/12 11:42:08 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/13 10:41:10 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,4 +29,4 @@ RUN wp core download --allow-root
 RUN chown -R www-data:www-data /var/www/wordpress
 
 
-ENTRYPOINT [ "sh", "/entrypoint.sh" ]
+ENTRYPOINT [ "bash", "entrypoint.sh" ]
