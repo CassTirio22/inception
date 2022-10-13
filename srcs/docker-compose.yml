@@ -33,7 +33,7 @@ services:
   nginx:
     container_name: nginx
     build: ./nginx/
-    deponds_on:
+    depends_on:
       wordpress:
     env_file: .env
     image: nginx
