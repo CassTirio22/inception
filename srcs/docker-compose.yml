@@ -34,7 +34,7 @@ services:
     container_name: nginx
     build: ./nginx/
     depends_on:
-      wordpress:
+      - wordpress
     env_file: .env
     image: nginx
     restart: unless-stopped
