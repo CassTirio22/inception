@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 11:57:54 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 12:37:09 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ if [ $? -ne 0 ]; then
  	echo "Listen port configuration"
 	sed -i "s|.*listen = /run/php/php7.3-fpm.sock.*|listen = 9000|g" "/etc/php/7.3/fpm/pool.d/www.conf"
 fi
-
 
 cat /.setup 2> /dev/null
 if [ $? -ne 0 ]; then
@@ -41,6 +40,7 @@ if ! wp core is-installed --allow-root; then
 	--admin_user="$WORDPRESS_ADMIN_USER" \
 	--admin_password="$WORDPRESS_ADMIN_PSW" \
 	--admin_email="$WORDPRESS_ADMIN_EMAIL" \
+	--skip-email \
 	--allow-root
 
 	echo "Update wordpress"
