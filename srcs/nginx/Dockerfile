@@ -6,9 +6,11 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 13:53:52 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 11:39:51 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 12:16:39 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+FROM debian:buster
 
 RUN apt-get update
 RUN apt-get upgrade -y
