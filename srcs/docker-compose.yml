@@ -30,6 +30,22 @@ services:
     volumes:
       - wordpress-volume:/var/www/wordpress
 
+  nginx:
+    container_name: nginx
+    build: ./nginx/
+    depends_on:
+      - wordpress
+    env_file: .env
+    image: nginx
+    restart: unless-stopped
+    networks:
+      - inside
+    ports:
+      - 443:443
+    volumes:
+      - wordpress-volume:/var/www/wordpress
+
+
 networks:
   inside:
 
