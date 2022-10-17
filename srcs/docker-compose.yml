@@ -45,7 +45,6 @@ services:
     volumes:
       - wordpress-volume:/var/www/wordpress
 
-
 networks:
   inside:
 
