@@ -3,14 +3,14 @@ version: "3.9"
 services:
   mariadb:
     container_name: mariadb
-    build: ./mariadb/
+    build: ./mariadb
     env_file: .env
     image: mariadb
     restart: unless-stopped
     networks:
       - inside
     volumes:
-      - mariadb-volume:/var/lib/mysql/
+      - mariadb-volume:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-u", "$MARIADB_USER_NAME", "-pMARIADB_USER_PSW"]
       interval: 10s
@@ -19,7 +19,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    build: ./wordpress/
+    build: ./wordpress
     depends_on:
       mariadb:
         condition: service_healthy
@@ -33,7 +33,7 @@ services:
 
   nginx:
     container_name: nginx
-    build: ./nginx/
+    build: ./nginx
     depends_on:
       - wordpress
     image: nginx
