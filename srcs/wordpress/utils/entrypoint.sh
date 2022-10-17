@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 12:37:09 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 14:24:43 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ if [ $? -ne 0 ]; then
 		--path="/var/www/wordpress/" \
 		--allow-root \
 		--skip-check
-	touch ./.setup
+	touch /.setup
 fi
 
 if ! wp core is-installed --allow-root; then
@@ -51,6 +51,12 @@ if ! wp core is-installed --allow-root; then
 	--role=editor \
 	--user_pass=$WORDPRESS_USER_PSW \
 	--allow-root
+
+	echo "Create first post"
+	wp post generate \
+		--count=1 \
+		--post_title=$WORDPRESS_TITLE \
+		--allow-root
 
 fi
 

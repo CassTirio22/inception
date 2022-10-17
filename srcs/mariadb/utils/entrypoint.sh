@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:19:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/11 12:07:43 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 14:20:33 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ if [ ! -d /var/lib/mysql/$MARIADB_NAME ]; then
 
 	echo "Create $MARIADB_NAME"
 	eval "echo \"$(cat ./config.sql)\"" | mariadb -u root
+
+	mysqladmin -u root password $MARIADB_PSW
 
 	service mysql stop --datadir=/var/lib/mysql
 
