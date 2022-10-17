@@ -6,16 +6,16 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/03 18:19:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 14:20:33 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 15:19:19 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/sh
 
-if [ ! -d /var/lib/mysql/$MARIADB_NAME ]; then
+if [ ! -d /var/lib/mysql/$MARIADB_DATABASE ]; then
 	service mysql start --datadir=/var/lib/mysql
 
-	echo "Create $MARIADB_NAME"
+	echo "Create $MARIADB_DATABSE"
 	eval "echo \"$(cat ./config.sql)\"" | mariadb -u root
 
 	mysqladmin -u root password $MARIADB_PSW
