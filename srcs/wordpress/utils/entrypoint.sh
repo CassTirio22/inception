@@ -6,22 +6,32 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/12 11:40:06 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 11:57:54 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!bin/sh
 
-echo "Create wp-config.php"
-rm -rf /var/www/wordpress/wp-config.php
-wp config create \
-	--dbname=$MARIADB_DATABASE \
-	--dbuser=$MARIADB_USER_NAME \
-	--dbpass=$MARIADB_USER_PSW \
-	--dbhost=$MARIADB_NAME \
-	--path="/var/www/wordpress/" \
-	--allow-root \
-	--skip-check
+grep -E "listen = 9000" "/etc/php/7.3/fpm/pool.d/www.conf" > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+ 	echo "Listen port configuration"
+	sed -i "s|.*listen = /run/php/php7.3-fpm.sock.*|listen = 9000|g" "/etc/php/7.3/fpm/pool.d/www.conf"
+fi
+
+
+cat /.setup 2> /dev/null
+if [ $? -ne 0 ]; then
+	echo "Create wp-config.php"
+	wp config create \
+		--dbname=$MARIADB_DATABASE \
+		--dbuser=$MARIADB_USER_NAME \
+		--dbpass=$MARIADB_USER_PSW \
+		--dbhost=$MARIADB_NAME \
+		--path="/var/www/wordpress/" \
+		--allow-root \
+		--skip-check
+	touch ./.setup
+fi
 
 if ! wp core is-installed --allow-root; then
 	echo "Install wordpress"
