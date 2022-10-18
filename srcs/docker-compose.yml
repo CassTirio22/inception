@@ -1,4 +1,4 @@
-version: "3.9"
+version : "3.9"
 
 services:
   mariadb:
@@ -20,11 +20,11 @@ services:
   wordpress:
     container_name: wordpress
     build: ./wordpress
+    env_file: .env
+    image: wordpress
     depends_on:
       mariadb:
         condition: service_healthy
-    env_file: .env
-    image: wordpress
     restart: unless-stopped
     networks:
       - inside
@@ -34,9 +34,9 @@ services:
   nginx:
     container_name: nginx
     build: ./nginx
+    image: nginx
     depends_on:
       - wordpress
-    image: nginx
     restart: unless-stopped
     networks:
       - inside

@@ -6,11 +6,11 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 18:12:02 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 15:59:46 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/17 16:54:09 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#!bin/sh
+#!/bin/sh
 
 grep -E "listen = 9000" "/etc/php/7.3/fpm/pool.d/www.conf" > /dev/null 2>&1
 if [ $? -ne 0 ]; then
