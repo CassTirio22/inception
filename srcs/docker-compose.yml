@@ -8,7 +8,7 @@ services:
     image: mariadb
     restart: unless-stopped
     networks:
-      - inside
+      - myNet
     volumes:
       - mariadb-volume:/var/lib/mysql
     healthcheck:
@@ -27,7 +27,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     networks:
-      - inside
+      - myNet
     volumes:
       - wordpress-volume:/var/www/wordpress
 
@@ -39,14 +39,14 @@ services:
       - wordpress
     restart: unless-stopped
     networks:
-      - inside
+      - myNet
     ports:
       - 443:443
     volumes:
       - wordpress-volume:/var/www/wordpress
 
 networks:
-  inside:
+  myNet:
 
 volumes:
   mariadb-volume:

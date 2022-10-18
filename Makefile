@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:51:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/18 11:43:47 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/18 13:46:25 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ all:
 		sudo mkdir -p /home/ctirions/data/database
 		sudo mkdir -p /home/ctirions/data/wordpress
 		sudo echo "127.0.0.1 ctirions.42.fr" >> /etc/hosts
-		docker-compose -f ./srcs/docker-compose.yml up
+		docker-compose -f ./srcs/docker-compose.yml up --detach
 
 up:
-		docker-compose -f ./srcs/docker-compose.yml up
+		docker-compose -f ./srcs/docker-compose.yml up --detach
 
 down:
 		docker-compose -f ./srcs/docker-compose.yml down
