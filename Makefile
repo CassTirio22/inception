@@ -6,7 +6,7 @@
 #    By: ctirions <ctirions@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/10 17:51:13 by ctirions          #+#    #+#              #
-#    Updated: 2022/10/17 16:18:08 by ctirions         ###   ########.fr        #
+#    Updated: 2022/10/18 11:43:47 by ctirions         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ fclean: clean
 		sudo rm -rf /home/ctirions/data
 		docker image rm mariadb
 		docker image rm wordpress
+		docker image rm nginx
 		docker image rm debian:buster
 
 re: fclean all
